@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package protobufadapter;
+
+message Policy {
+    repeated string rules = 1;
+}
