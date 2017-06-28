@@ -1,4 +1,4 @@
-Protobuf Adapter [![Godoc](https://godoc.org/github.com/casbin/protobuf-adapter?status.svg)](https://godoc.org/github.com/casbin/protobuf-adapter)
+Protobuf Adapter [![Build Status](https://travis-ci.org/casbin/protobuf-adapter.svg?branch=master)](https://travis-ci.org/casbin/protobuf-adapter) [![Coverage Status](https://coveralls.io/repos/github/casbin/protobuf-adapter/badge.svg?branch=master)](https://coveralls.io/github/casbin/protobuf-adapter?branch=master) [![Godoc](https://godoc.org/github.com/casbin/protobuf-adapter?status.svg)](https://godoc.org/github.com/casbin/protobuf-adapter)
 ====
 
 Protobuf Adapter is the [Google Protocol Buffers](https://developers.google.com/protocol-buffers/) adapter for [Casbin](https://github.com/casbin/casbin). With this library, Casbin can load policy from Protocol Buffers or save policy to it.
