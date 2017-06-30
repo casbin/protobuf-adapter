@@ -14,7 +14,7 @@ package main
 
 import (
 	"github.com/casbin/casbin"
-	"github.com/casbin/mysql-adapter"
+	"github.com/casbin/protobuf-adapter"
 )
 
 func main() {
