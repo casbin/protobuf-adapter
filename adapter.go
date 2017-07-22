@@ -22,22 +22,22 @@ import (
 	"github.com/golang/protobuf/proto"
 )
 
-// ProtobufAdapter represents the Protocol Buffers adapter for policy persistence.
+// Adapter represents the Protocol Buffers adapter for policy persistence.
 // It can load policy from protobuf bytes or save policy to protobuf bytes.
-type ProtobufAdapter struct {
+type Adapter struct {
 	source *[]byte
 	policy *Policy
 }
 
-// NewProtobufAdapter is the constructor for ProtobufAdapter.
-func NewProtobufAdapter(source *[]byte) *ProtobufAdapter {
-	a := ProtobufAdapter{}
+// NewAdapter is the constructor for Adapter.
+func NewAdapter(source *[]byte) *Adapter {
+	a := Adapter{}
 	a.source = source
 	a.policy = &Policy{}
 	return &a
 }
 
-func (a *ProtobufAdapter) saveToBuffer() error {
+func (a *Adapter) saveToBuffer() error {
 	data, err := proto.Marshal(a.policy)
 	if err == nil {
 		*a.source = data
@@ -45,7 +45,7 @@ func (a *ProtobufAdapter) saveToBuffer() error {
 	return err
 }
 
-func (a *ProtobufAdapter) loadFromBuffer() error {
+func (a *Adapter) loadFromBuffer() error {
 	policy := &Policy{}
 	err := proto.Unmarshal(*a.source, policy)
 	if err == nil {
@@ -67,7 +67,7 @@ func loadPolicyLine(line string, model model.Model) {
 }
 
 // LoadPolicy loads policy from protobuf bytes.
-func (a *ProtobufAdapter) LoadPolicy(model model.Model) error {
+func (a *Adapter) LoadPolicy(model model.Model) error {
 	err := a.loadFromBuffer()
 	if err != nil {
 		return err
@@ -80,7 +80,7 @@ func (a *ProtobufAdapter) LoadPolicy(model model.Model) error {
 }
 
 // SavePolicy saves policy to protobuf bytes.
-func (a *ProtobufAdapter) SavePolicy(model model.Model) error {
+func (a *Adapter) SavePolicy(model model.Model) error {
 	a.policy.Reset()
 
 	for ptype, ast := range model["p"] {

@@ -37,7 +37,7 @@ func TestAdapter(t *testing.T) {
 	e := casbin.NewEnforcer("examples/rbac_model.conf", "examples/rbac_policy.csv")
 
 	b := []byte{}
-	a := NewProtobufAdapter(&b)
+	a := NewAdapter(&b)
 	// This is a trick to save the current policy to the Protocol Buffer.
 	// We can't call e.SavePolicy() because the adapter in the enforcer is still the file adapter.
 	// The current policy means the policy in the Casbin enforcer (aka in memory).
@@ -57,7 +57,7 @@ func TestAdapter(t *testing.T) {
 	// Now the Protocol Buffer has policy, so we can provide a normal use case.
 	// Create an adapter and an enforcer.
 	// NewEnforcer() will load the policy automatically.
-	a = NewProtobufAdapter(&b)
+	a = NewAdapter(&b)
 	e = casbin.NewEnforcer("examples/rbac_model.conf", a)
 	testGetPolicy(t, e, [][]string{{"alice", "data1", "read"}, {"bob", "data2", "write"}, {"data2_admin", "data2", "read"}, {"data2_admin", "data2", "write"}})
 }
